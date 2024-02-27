@@ -1,10 +1,18 @@
 [tool.poetry]
+name = "test-internet-store"
 version = "0.1.0"
+description = ""
 authors = ["Pvl1307 <ivanov.pavel.1307@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+django = "^5.0.2"
+djangorestframework = "^3.14.0"
+python-dotenv = "^1.0.1"
+drf-spectacular = "^0.27.1"
+djangorestframework-simplejwt = "^5.3.1"
+psycopg2-binary = "^2.9.9"
 
 
 [build-system]

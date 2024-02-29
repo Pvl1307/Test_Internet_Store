@@ -9,7 +9,7 @@ class Category(models.Model):
     """Модель категории"""
     name = models.CharField(max_length=250, verbose_name='Наименование категории')
     slug_name = models.CharField(max_length=250, verbose_name='SLUG', **NULLABLE)
-    image = models.ImageField(upload_to='category_images/', verbose_name='Изображение категории')
+    image = models.ImageField(upload_to='category_images/', verbose_name='Изображение категории', **NULLABLE)
 
     def __str__(self):
         return f'{self.name}({self.slug_name})'
@@ -26,7 +26,7 @@ class SubCategory(models.Model):
 
     name = models.CharField(max_length=250, verbose_name='Наименование подкатегории')
     slug_name = models.CharField(max_length=250, verbose_name='SLUG', **NULLABLE)
-    image = models.ImageField(upload_to='subcategory_images/', verbose_name='Изображение подкатегории')
+    image = models.ImageField(upload_to='subcategory_images/', verbose_name='Изображение подкатегории', **NULLABLE)
 
     def __str__(self):
         return f'{self.name}({self.slug_name})'
@@ -42,9 +42,12 @@ class Product(models.Model):
     name = models.CharField(max_length=250, verbose_name='Наименование продукта')
     slug_name = models.CharField(max_length=250, verbose_name='SLUG', **NULLABLE)
 
-    image_small = models.ImageField(upload_to='product_images/small/', verbose_name='Изображение продукта(маленькое)')
-    image_medium = models.ImageField(upload_to='product_images/meduim/', verbose_name='Изображение продукта(среднее)')
-    image_large = models.ImageField(upload_to='product_images/large/', verbose_name='Изображение продукта(большое)')
+    image_small = models.ImageField(upload_to='product_images/small/', verbose_name='Изображение продукта(маленькое)',
+                                    **NULLABLE)
+    image_medium = models.ImageField(upload_to='product_images/meduim/', verbose_name='Изображение продукта(среднее)',
+                                     **NULLABLE)
+    image_large = models.ImageField(upload_to='product_images/large/', verbose_name='Изображение продукта(большое)',
+                                    **NULLABLE)
 
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена товара')
 

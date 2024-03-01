@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import F
 
 from users.models import User
 
@@ -66,6 +67,16 @@ class Cart(models.Model):
     class Meta:
         verbose_name = 'Корзина пользователя'
         verbose_name_plural = 'Корзины пользователей'
+
+    @staticmethod
+    def total_quantity_for_user(user):
+        return Cart.objects.filter(user=user).aggregate(total_quantity=models.Sum('products__quantity'))[
+            'total_quantity'] or 0
+
+    @staticmethod
+    def total_cost_for_user(user):
+        return Cart.objects.filter(user=user).aggregate(
+            total_cost=models.Sum('products__product__price' * F('products__quantity')))['total_cost'] or 0
 
 
 class CartItem(models.Model):
